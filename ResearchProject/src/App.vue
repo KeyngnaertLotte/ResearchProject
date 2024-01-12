@@ -1,21 +1,15 @@
 <script setup>
+import PuppetView from './views/PuppetView.vue';
+import OpenAiView from './views/OpenAiView.vue';
 
 </script>
 
 <template>
-  <div class="puppet">aaaaaaaaaaa</div>
-  <div class="ai">aaaaaaaaaaa</div>
+  <div class="w-1/2 ">
+    <PuppetView />
+  </div>
+  <div class="w-1/2">
+    <OpenAiView />
+  </div>
 </template>
 
-<style scoped>
-.puppet{
-  width: 50%;
-  height: 100%;
-  background: white;
-}
-.ai {
-  width: 50%;
-  height: 100%;
-  background: green;
-}
-</style>
