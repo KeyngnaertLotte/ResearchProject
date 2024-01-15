@@ -14,10 +14,6 @@
       <button @click="sendQuestion" class="btn btn-primary" :disabled="loading">
         {{ loading ? 'Sending Question...' : 'Send Question' }}
       </button>
-      <div v-if="response">
-        <h3 class="text-white">Response:</h3>
-        <pre>{{ response }}</pre>
-      </div>
     </div>
   </template>
   
@@ -143,8 +139,6 @@
     },
     methods: {
       async sendQuestion() {
-        const vm = this;
-        vm.loading = true;
         const question = `Change this code ${puppetCode} so it looks like my puppet is ${this.question} show vue 3 code`;
   
         try {
@@ -159,13 +153,13 @@
             model: "gpt-3.5-turbo-1106",
           });
   
-          console.log(completion.choices[0].message.content);
-          vm.response = completion.choices[0].message.content;
+          // console.log(completion.choices[0].message.content);
+          if (completion.choices[0].message.content) this.emitter.emit('openai', `${completion.choices[0].message.content}`)
+          
+
         } catch (error) {
           console.error(error);
-        } finally {
-          vm.loading = false;
-        }
+        } 
       },
     },
   };
