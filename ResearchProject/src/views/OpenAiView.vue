@@ -1,19 +1,21 @@
 <template>
-    <div class="container">
-      <h2 class="text-white">AnimeJS Questions</h2>
-      <div class="form-group">
-        <label for="question" class="text-white">Question:</label>
+    <div class="flex justify-center items-center h-full">
+      <div class="flex flex-col  items-center h-2/5 p-4 rounded-2xl bg-[#DE2A21] w-4/5">
+        <h2 class="text-white font-bold text-4xl">Let's make Micky move!</h2>
+      <div class="flex flex-col justify-around w-3/5 h-full">
+        <div class="w-full flex flex-col">
+          <label for="question" class="text-white font-semibold my-2">What do you want him to do? </label>
         <input
           type="text"
           id="question"
-          class="form-control"
+          class="p-2 rounded-2xl"
           v-model="question"
           placeholder="Enter your question"
         />
+        </div>
+      <button @click="sendQuestion" class="btn btn-primary bg-white rounded-lg p-1" > SEND QUESTION</button>
       </div>
-      <button @click="sendQuestion" class="btn btn-primary bg-white" :disabled="loading">
-        {{ loading ? 'Sending Question...' : 'Send Question' }}
-      </button>
+      </div>
     </div>
   </template>
   
@@ -78,20 +80,4 @@
     },
   };
   </script>
-  
-  <style scoped>
-  .container {
-    background-color: #121212;
-    padding: 20px;
-    border-radius: 10px;
-    width: 100%;
-    height: 50%;
-  }
-  .form-group label {
-    margin-bottom: 10px;
-  }
-  .form-control {
-    margin-bottom: 20px;
-  }
-  </style>
   
