@@ -23,12 +23,12 @@
     apiKey: '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',
     dangerouslyAllowBrowser: true,
   });
-  const puppetCode = `this.puppet('#rightArm', translatXValues, rotateValues);
-      this.puppet('#leftArm', translatXValues, rotateValues);
-      this.puppet('#leftLeg', translatXValues, rotateValues);
-      this.puppet('#rightLeg', translatXValues, rotateValues);
-      this.puppet('#body', translatXValues, rotateValues);
-      this.puppet('#head', translatXValues, rotateValues);`;
+  const puppetCode = `this.puppet('#rightArm', [0, 0], [0, 0]);
+      this.puppet('#leftArm', [0, 0], [0, 0]);
+      this.puppet('#leftLeg', [0, 0], [0, 0]);
+      this.puppet('#rightLeg', [0, 0], [0, 0]);
+      this.puppet('#body', [0, 0], [0, 0]);
+      this.puppet('#head', [0, 0], [0, 0]);`;
 
   const animeCode = `puppet(target, translatXValues, rotateValues){
         anime({
@@ -53,14 +53,14 @@
     },
     methods: {
       async sendQuestion() {
-        const question = `Return this ${puppetCode} but change the values so that my puppet ${this.question}. My puppet function looks like this ${animeCode}`;
+        const question = `${puppetCode} Change the values of this code so that my puppet ${this.question}. My puppet function looks like this ${animeCode}. `;
   
         try {
           const completion = await openai.chat.completions.create({
             messages: [
               {
                 role: "system",
-                content: "You are a helpful assistant designed to output JSON.",
+                content: `You are a helpful assistant designed to only output code in following format ${puppetCode}`,
               },
               { role: "user", content: question },
             ],
