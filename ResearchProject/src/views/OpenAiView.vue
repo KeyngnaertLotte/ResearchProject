@@ -2,8 +2,8 @@
     <div class="flex justify-center items-center h-full">
       <div class="flex flex-col  items-center h-2/5 p-4 rounded-2xl bg-[#DE2A21] w-4/5">
         <h2 class="text-white font-bold text-4xl">Let's make Micky move!</h2>
-      <div class="flex flex-col justify-around w-3/5 h-full">
-        <div class="w-full flex flex-col">
+      <div class="flex flex-col justify-around w-3/5 h-full" v-if="!loading">
+        <div class="w-full flex flex-col" >
           <label for="question" class="text-white font-semibold my-2">What do you want him to do? </label>
         <input
           type="text"
@@ -11,16 +11,21 @@
           class="p-2 rounded-2xl"
           v-model="question"
           placeholder="Enter your question"
+          required
         />
         </div>
       <button @click="sendQuestion" class="btn btn-primary bg-white rounded-lg p-1" > SEND QUESTION</button>
       </div>
+      <div class="w-full h-full flex items-center justify-center" v-if="loading">
+        <Loader/>
+       </div>
       </div>
     </div>
   </template>
   
   <script>
   import OpenAI from "openai";
+  import Loader from "@/components/Loader.vue"
   const openai = new OpenAI({
     apiKey: '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',
     dangerouslyAllowBrowser: true,
@@ -46,6 +51,7 @@
       },`;
   
   export default {
+    components:{ Loader},
     data() {
       return {
         question: "",
@@ -55,8 +61,9 @@
     },
     methods: {
       async sendQuestion() {
+        this.loading = true
         const question = `${puppetCode} Change the values of this code so that my puppet ${this.question}. My puppet function looks like this ${animeCode}. `;
-  
+        
         try {
           const completion = await openai.chat.completions.create({
             messages: [
@@ -75,7 +82,9 @@
 
         } catch (error) {
           console.error(error);
-        } 
+        } finally {
+          this.loading = false
+        }
       },
     },
   };
