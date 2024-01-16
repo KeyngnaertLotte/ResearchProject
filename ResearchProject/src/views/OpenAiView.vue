@@ -11,7 +11,7 @@
           placeholder="Enter your question"
         />
       </div>
-      <button @click="sendQuestion" class="btn btn-primary" :disabled="loading">
+      <button @click="sendQuestion" class="btn btn-primary bg-white" :disabled="loading">
         {{ loading ? 'Sending Question...' : 'Send Question' }}
       </button>
     </div>
@@ -23,111 +23,25 @@
     apiKey: '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',
     dangerouslyAllowBrowser: true,
   });
-  const puppetCode = `
-  import MickyMouse from './MickyMouse.vue';
-  import anime from 'animejs';
-  const duration = 1000;
-  
-  // Define the initial and final rotation angles for the waving motion
-  const initialRotationRA = 0;
-  const finalRotationRA = 0; // Adjust the desired rotation angle
-  
-  const initialRotationLA = 0;
-  const finalRotationLA = 0;
-  
-  const initialRotationLL = 0;
-  const finalRotationLL = 0;
-  
-  const initialRotationRL = 0;
-  const finalRotationRL = 0;
-  
-  const initialRotationB = 0;
-  const finalRotationB = 0;
-  
-  const initialRotationH = 0;
-  const finalRotationH = 0;
-  
-  export default {
-    mounted() {
-      this.rightArm();
-      this.leftArm();
-      this.rightLeg();
-      this.leftLeg();
-      this.body();
-      this.head();
-    },
-    components: {
-      MickyMouse,
-    },
-    methods: {
-      rightArm(){
+  const puppetCode = `this.puppet('#rightArm', translatXValues, rotateValues);
+      this.puppet('#leftArm', translatXValues, rotateValues);
+      this.puppet('#leftLeg', translatXValues, rotateValues);
+      this.puppet('#rightLeg', translatXValues, rotateValues);
+      this.puppet('#body', translatXValues, rotateValues);
+      this.puppet('#head', translatXValues, rotateValues);`;
+
+  const animeCode = `puppet(target, translatXValues, rotateValues){
         anime({
-          targets: '#rightArm',
-          rotate: [initialRotationRA, finalRotationRA],
+          targets: target,
+          rotate: rotateValues,
+          translateX: translatXValues,
           easing: 'easeInOutQuad',
           duration,
           loop: true,
           direction: 'alternate',
           transformOrigin: '100 100',
         });
-      },
-      leftArm(){
-        anime({
-          targets: '#leftArm',
-          rotate: [initialRotationLA, finalRotationLA],
-          easing: 'easeInOutQuad',
-          duration,
-          loop: true,
-          direction: 'alternate',
-          transformOrigin: '100 100',
-        });
-      },
-      leftLeg(){
-        anime({
-          targets: '#leftLeg',
-          rotate: [initialRotationLL, finalRotationLL],
-          easing: 'easeInOutQuad',
-          duration,
-          loop: true,
-          direction: 'alternate',
-          transformOrigin: '100 100',
-        });
-      },
-      rightLeg(){
-        anime({
-          targets: '#rightLeg',
-          rotate: [initialRotationRL, finalRotationRL],
-          easing: 'easeInOutQuad',
-          duration,
-          loop: true,
-          direction: 'alternate',
-          transformOrigin: '100 100',
-        });
-      },
-      body(){
-        anime({
-          targets: '#body',
-          rotate: [initialRotationB, finalRotationB],
-          easing: 'easeInOutQuad',
-          duration,
-          loop: true,
-          direction: 'alternate',
-          transformOrigin: '100 100',
-        });
-      },
-      head(){
-        anime({
-          targets: '#head',
-          rotate: [initialRotationH, finalRotationH],
-          easing: 'easeInOutQuad',
-          duration,
-          loop: true,
-          direction: 'alternate',
-          transformOrigin: '100 100',
-        });
-      },
-      }
-  };`;
+      },`;
   
   export default {
     data() {
@@ -139,7 +53,7 @@
     },
     methods: {
       async sendQuestion() {
-        const question = `Change this code ${puppetCode} so it looks like my puppet is ${this.question} show vue 3 code`;
+        const question = `Return this ${puppetCode} but change the values so that my puppet ${this.question}. My puppet function looks like this ${animeCode}`;
   
         try {
           const completion = await openai.chat.completions.create({
