@@ -5,11 +5,12 @@ import OpenAiView from './views/OpenAiView.vue';
 </script>
 
 <template>
-  <div class="w-1/2 flex items-center justify-center">
-    <PuppetView />
-  </div>
-  <div class="w-1/2">
-    <OpenAiView />
-  </div>
+  <header>
+    <nav class="text-white">
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/canvas">Canvas</RouterLink>
+    </nav>
+  </header>
+  <RouterView/>
 </template>
 
