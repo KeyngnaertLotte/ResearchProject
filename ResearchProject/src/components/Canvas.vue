@@ -4,7 +4,10 @@
       <div v-for="color in colors" class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]" :style="{ backgroundColor: color }" @click="changeColor(color)"></div>
     </div>
     <canvas class="block w-full h-[90%] cursor-crosshair bg-white border-2 border-solid rounded-lg" @mousedown="startPainting" @mouseup="finishedPainting" @mousemove="draw" id="canvas"></canvas>
-    <a class="block bg-[#333] text-white rounded-[5px] cursor-pointer" @click.prevent="clearCanvas">Clear Canvas</a>
+    <div class="flex flex-row justify-between">
+      <a class="block bg-[#333] text-white rounded-[5px] cursor-pointer" @click.prevent="clearCanvas">Clear Canvas</a>
+      <a class="block bg-[#333] text-white rounded-[5px] cursor-pointer" @click.prevent="saveSvg">Save drawing as SVG</a>
+    </div>
   </div>
 </template>
 
