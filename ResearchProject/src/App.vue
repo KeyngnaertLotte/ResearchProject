@@ -1,16 +1,15 @@
 <script setup>
-import PuppetView from './views/PuppetView.vue';
-import OpenAiView from './views/OpenAiView.vue';
 
 </script>
 
 <template>
-  <header>
-    <nav class="text-white">
+  <div class="flex flex-col justify-between items-center w-full h-full p-4">
+  <RouterView/>
+    <nav class="text-white flex flex-row items-center justify-center gap-4 w-full justify-self-end">
       <RouterLink to="/">Home</RouterLink>
+      <p>/</p>
       <RouterLink to="/canvas">Canvas</RouterLink>
     </nav>
-  </header>
-  <RouterView/>
+  </div>
 </template>
 

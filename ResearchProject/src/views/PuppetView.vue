@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full flex justify-center items-center pt-10 pl-10">
+    <div class="w-full h-full flex justify-center items-center ">
       <MickyMouse />
     </div>
   </template>
@@ -15,13 +15,6 @@
   
   export default {
     mounted() {
-      
-      // this.puppet('#rightArm', [0, 5], [-10, 10]);
-      // this.puppet('#leftArm', [0, -5], [-10, 10]);
-      // this.puppet('#leftLeg', [0, 0], [-5, 5]);
-      // this.puppet('#rightLeg', [0, 0], [-5, 5]);
-      // this.puppet('#body', [0, 0], [0, 0]);
-      // this.puppet('#head', [0, 0], [-1, 1]);
       this.emitter.on("openai", (data) => {
         receivedData = data
         console.log(receivedData)
