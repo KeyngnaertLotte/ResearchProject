@@ -69,7 +69,7 @@
             messages: [
               {
                 role: "system",
-                content: `You are a helpful assistant designed to only output code in following format ${puppetCode}`,
+                content: `You are a helpful assistant to animate with animejs designed to only output code in following format ${puppetCode}`,
               },
               { role: "user", content: question },
             ],

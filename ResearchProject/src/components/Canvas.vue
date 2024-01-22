@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="h-full">
     <div class="flex justify-center mb-4">
       <div v-for="color in colors" class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]" :style="{ backgroundColor: color }" @click="changeColor(color)"></div>
@@ -13,6 +13,7 @@
 
 <script>
 import { onMounted, ref } from 'vue';
+import Paper from 'paper'
 
 export default {
   setup() {
@@ -71,6 +72,11 @@ export default {
       canvas.value.width = window.innerWidth * 0.8;
     });
 
+    const saveSvg = () => {
+      var myPath = new Paper.Path()
+      console.log(myPath)
+    }
+
     return {
       painting,
       canvas,
@@ -81,7 +87,95 @@ export default {
       startPainting,
       finishedPainting,
       draw,
+      saveSvg
     };
   },
 };
+</script> -->
+
+
+<!-- <script setup>
+import paper from "paper"
+import { ref, onMounted } from 'vue'
+var path;
+var start;
+onMounted(()=>{
+  
+paper.setup(document.getElementById('paper-canvas'));
+  // path = new paper.Path();
+  // path.strokeColor = 'black';
+  // start = new paper.Point(100, 100);
+  // path.moveTo(start);
+  // path.lineTo(start.add([ 200, -50 ]));
+  // paper.view.draw();
+ 
+})
+
+function startPainting(e) {
+  path = new paper.Path();
+  path.strokeColor = 'black';
+  start = new paper.Point(0, 0);
+  path.moveTo(start);
+  path.lineTo(start.add([ e.offsetX, e.offsetY ]));
+  paper.view.draw();
+  console.log(e.offsetX, e.offsetY)
+  console.log(e)
+
+}
 </script>
+
+<template>
+  <div class="h-full">
+    <div class="flex justify-center mb-4">
+      <div v-for="color in colors" class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]" :style="{ backgroundColor: color }" @click="changeColor(color)"></div>
+    </div>
+    <canvas class="block w-full h-[90%] cursor-crosshair bg-white border-2 border-solid rounded-lg" @mousedown="startPainting" @mouseup="finishedPainting" @mousemove="draw"  id="paper-canvas" ref="canvas"></canvas>
+    <div class="flex flex-row justify-between">
+      <a class="block bg-[#333] text-white rounded-[5px] cursor-pointer" @click.prevent="clearCanvas">Clear Canvas</a>
+      <a class="block bg-[#333] text-white rounded-[5px] cursor-pointer" @click.prevent="saveSvg">Save drawing as SVG</a>
+    </div>
+  </div>
+</template> -->
+
+<script setup>
+import paper from "paper"
+import { ref, onMounted } from 'vue'
+var path;
+var tool;
+onMounted(()=>{
+  
+paper.setup(document.getElementById('paper-canvas'));
+  tool = new paper.Tool()
+  tool.onMouseDown = function (e){
+    path = new paper.Path();
+    path.strokeColor = 'black';
+  }
+
+  tool.onMouseDrag = function (e){
+    path.add(e.point)
+  }
+
+  tool.onMouseUp = function (e){
+    path.fillColor = 'green'
+    console.log(path)
+    console.log(path.pathData)
+    
+  }
+ 
+})
+
+
+</script>
+
+<template>
+  <div class="h-full">
+    <div class="flex justify-center mb-4">
+      <div v-for="color in colors" class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]" :style="{ backgroundColor: color }" @click="changeColor(color)"></div>
+    </div>
+    <canvas class="block w-full h-[90%] cursor-crosshair bg-white border-2 border-solid rounded-lg" @mousedown="startPainting" @mouseup="finishedPainting" @mousemove="draw"  id="paper-canvas" ref="canvas"></canvas>
+    <div class="flex flex-row justify-between">
+      <a class="block bg-[#333] text-white rounded-[5px] cursor-pointer" @click.prevent="clearCanvas">Clear Canvas</a>
+      <a class="block bg-[#333] text-white rounded-[5px] cursor-pointer" @click.prevent="saveSvg">Save drawing as SVG</a>
+    </div>
+  </div>
+</template>
