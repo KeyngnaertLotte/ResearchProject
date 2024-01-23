@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-full flex justify-center items-center ">
-      <MickyMouse />
+      <MickyMouse class="scale-[0.7]"/>
     </div>
   </template>
   

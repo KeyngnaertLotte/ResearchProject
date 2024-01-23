@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="flex flex-col justify-between items-center w-full h-full p-4">
+  <div class="flex flex-col justify-between items-center w-screen h-screen p-4 overflow-hidden">
   <RouterView/>
     <nav class="text-white flex flex-row items-center justify-center gap-4 w-full justify-self-end">
       <RouterLink to="/">Home</RouterLink>
