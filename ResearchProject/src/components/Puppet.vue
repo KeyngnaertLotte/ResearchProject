@@ -3,7 +3,8 @@
     id="Puppet"
     data-name="Puppet"
     xmlns="http://www.w3.org/2000/svg"
-    class="w-full h-full"
+    viewBox="0 0 590 630"
+    :class="this.bodyParts !== null && this.bodyParts.length !== undefined && this.bodyParts.length !== 0 ? 'scale-[.8]' : 'scale-[.7]'"
   >
     <g id="leftLeg" transform-origin="250 440">
       <!-- <circle cx="250" cy="440" r="1" fill="green" id="pivotPoint" /> -->
@@ -77,8 +78,33 @@ export default {
   },
   mounted() {
     console.log(this.bodyParts);
-    if (this.bodyParts === null) {
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    if (this.bodyParts !== null && this.bodyParts.length !== undefined && this.bodyParts.length !== 0) {
+      
+      console.log(
+        this.bodyParts.filter((bodyPart) => bodyPart.id === 'leftLeg')
+      );
+      this.leftLegPath = this.bodyParts.filter(
+        (bodyPart) => bodyPart.id === 'leftLeg'
+      );
+      this.rightLegPath = this.bodyParts.filter(
+        (bodyPart) => bodyPart.id === 'rightLeg'
+      );
+      this.leftArmPath = this.bodyParts.filter(
+        (bodyPart) => bodyPart.id === 'leftArm'
+      );
+      this.rightArmPath = this.bodyParts.filter(
+        (bodyPart) => bodyPart.id === 'rightArm'
+      );
+      this.headPath = this.bodyParts.filter(
+        (bodyPart) => bodyPart.id === 'head'
+      );
+      this.bodyPath = this.bodyParts.filter(
+        (bodyPart) => bodyPart.id === 'body'
+      );
+    } 
+    else {
+      
       this.leftLegPath = [
         {
           id: 'leftLeg',
@@ -229,28 +255,6 @@ export default {
         { id: 'head', fill: '#020201', pathData: 'm298.94,244.91c.03,1.74-.2,3.44-.65,5.12-1.65,6.15-6.41,10.52-12.26,11.13-3.12.32-6.17-.42-9.24-.78-2.5-.29-4.17-1.52-5.57-3.34-2.26-2.95-3.72-6.21-3.55-10.04.05-1.21-.09-2.43.02-3.63.07-.84-.34-1.27-.91-1.68-3.15-.65-6.17-1.83-9.57-2.77.69,1.22,1.18,2.12,1.71,3.01,3.16,5.32,6.33,10.64,10.46,15.31,3.7,4.19,8.28,6.27,13.9,6,2.71-.13,5.17-1.15,7.66-2.06,0,0,0,0,0,0,.93-.61,1.85-1.22,2.78-1.83,2.46-1.61,4.84-3.38,6.48-5.81,1.83-2.71,3.95-5.19,5.75-7.91,1.36-2.05,2.79-4.05,4.46-6.46-3.99,1.11-7.47,2.27-11.07,2.97,0,0,0,0,0,0-.51.87-.4,1.84-.39,2.79Z' },
       ];
       // this.leftArmPAth = [{id: '', fill: '#', pathData: ''},]
-    } else {
-      console.log(
-        this.bodyParts.filter((bodyPart) => bodyPart.id === 'leftLeg')
-      );
-      this.leftLegPath = this.bodyParts.filter(
-        (bodyPart) => bodyPart.id === 'leftLeg'
-      );
-      this.rightLegPath = this.bodyParts.filter(
-        (bodyPart) => bodyPart.id === 'rightLeg'
-      );
-      this.leftArmPath = this.bodyParts.filter(
-        (bodyPart) => bodyPart.id === 'leftArm'
-      );
-      this.rightArmPath = this.bodyParts.filter(
-        (bodyPart) => bodyPart.id === 'rightArm'
-      );
-      this.headPath = this.bodyParts.filter(
-        (bodyPart) => bodyPart.id === 'head'
-      );
-      this.bodyPath = this.bodyParts.filter(
-        (bodyPart) => bodyPart.id === 'body'
-      );
     }
   },
 };

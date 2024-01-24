@@ -13,7 +13,6 @@ import {
 var path;
 var tool;
 const group = ref([]);
-const chosenStrokeColor = ref('#000000');
 const chosenFillColor = ref('noColor');
 const bodyPartCounter = ref(0);
 
@@ -35,11 +34,6 @@ const bodyParts = ref([
   'head',
 ]);
 
-const changeStrokeColor = (color) => {
-  chosenStrokeColor.value = color;
-  console.log(chosenStrokeColor);
-};
-
 const changeFillColor = (color) => {
   chosenFillColor.value = color;
   console.log(chosenFillColor);
@@ -51,7 +45,7 @@ onMounted(() => {
 
   tool.onMouseDown = function (e) {
     path = new paper.Path();
-    path.strokeColor = chosenStrokeColor.value;
+    path.strokeColor = '#000000';
   };
 
   tool.onMouseDrag = function (e) {
@@ -72,11 +66,13 @@ onMounted(() => {
 
 const saveSvg = () => {
   bodyPartCounter.value++;
-  if (bodyPartCounter.value === 6) bodyPartCounter.value = 0;
+  if (bodyPartCounter.value === 6) {
+    bodyPartCounter.value = 0
+    localStorage.setItem('puppet', JSON.stringify(group.value));
+  }
   group.value.forEach((element) => {
     console.log(element);
   });
-  localStorage.setItem('puppet', JSON.stringify(group.value))
   console.log(bodyPartCounter);
 };
 
@@ -111,30 +107,19 @@ const spacedBodypart = () => {
 <template>
   <div class="h-full w-full flex flex-row justify-between items-center">
     <div class="flex flex-col items-center justify-between h-1/2 w-1/3">
-      <div>
-        <p class="text-white mb-4">Stroke color:</p>
-        <div
-          v-for="color in colors"
-          class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]"
-          :style="{ backgroundColor: color }"
-          @click="changeStrokeColor(color)"
-        ></div>
+      <p class="text-white mb-4">Fill color:</p>
+      <div
+        class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]"
+        @click="changeFillColor('noColor')"
+      >
+        <XCircle :size="20" class="text-red-500" />
       </div>
-      <div>
-        <p class="text-white mb-4">Fill color:</p>
-        <div
-          class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]"
-          @click="changeFillColor('noColor')"
-        >
-          <XCircle :size="20" class="text-red-500" />
-        </div>
-        <div
-          v-for="color in colors"
-          class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]"
-          :style="{ backgroundColor: color }"
-          @click="changeFillColor(color)"
-        ></div>
-      </div>
+      <div
+        v-for="color in colors"
+        class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]"
+        :style="{ backgroundColor: color }"
+        @click="changeFillColor(color)"
+      ></div>
     </div>
     <div
       class="w-fit h-full flex items-center justify-center bg-white border-2 border-solid rounded-lg"

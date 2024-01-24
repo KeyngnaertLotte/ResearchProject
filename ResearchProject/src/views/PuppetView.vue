@@ -1,7 +1,7 @@
 <template>
     <div class="w-full h-full flex justify-center items-center ">
       <!-- <MickyMouse class="scale-[0.7]"/> -->
-      <Puppet class="scale-[0.9]"/>
+      <Puppet/>
     </div>
   </template>
   
