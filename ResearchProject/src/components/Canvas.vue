@@ -76,6 +76,7 @@ const saveSvg = () => {
   group.value.forEach((element) => {
     console.log(element);
   });
+  localStorage.setItem('puppet', JSON.stringify(group.value))
   console.log(bodyPartCounter);
 };
 

@@ -1,11 +1,13 @@
 <template>
     <div class="w-full h-full flex justify-center items-center ">
-      <MickyMouse class="scale-[0.7]"/>
+      <!-- <MickyMouse class="scale-[0.7]"/> -->
+      <Puppet class="scale-[0.9]"/>
     </div>
   </template>
   
   <script>
   import MickyMouse from '../components/svg/SvgMickyMouse.vue';
+  import Puppet from '@/components/Puppet.vue'
   import anime from 'animejs';
 
   var receivedData = ""
@@ -28,6 +30,7 @@
     },
     components: {
       MickyMouse,
+      Puppet
     },
     methods: {
       puppet(target, translatXValues, rotateValues){
