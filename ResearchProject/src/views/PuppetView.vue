@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full ">
+    <div class="w-[70%] h-[70%] ">
       <!-- <MickyMouse class="scale-[0.7]"/> -->
       <Puppet/>
     </div>
