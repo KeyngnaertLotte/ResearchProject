@@ -150,7 +150,7 @@ const restartDrawing = () => {
         id="paper-canvas"
         ref="canvas"
       ></canvas>
-      <MickyMouse class="absolute h-full scale-[.85] opacity-15 md:scale-[.75]" />
+      <MickyMouse class="absolute h-full xl:scale-[.85] opacity-15 scale-[.75]" />
     </div>
     <div class="flex flex-col justify-between w-1/3 gap-4 items-center">
       <div
@@ -165,12 +165,12 @@ const restartDrawing = () => {
         </p>
       </div>
       <div class="w-full flex flex-col items-center justify-between gap-4"><a
-        class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4 md:w-5/6"
+        class="bg-[#333] text-white rounded-[5px] xl:w-1/2 cursor-pointer flex flex-row gap-4 p-4 w-5/6"
         @click.prevent="clearCanvas"
         ><RotateCcw />Clear Canvas</a
       >
       <a
-        class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4 md:w-5/6"
+        class="bg-[#333] text-white rounded-[5px] xl:w-1/2 cursor-pointer flex flex-row gap-4 p-4 w-5/6"
         @click.prevent="saveSvg"
       >
         <template v-if="spacedBodypart() === 'head'">
