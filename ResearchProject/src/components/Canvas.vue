@@ -120,7 +120,7 @@ const restartDrawing = () => {
 
 <template>
   <div class="h-full w-full flex flex-row justify-between items-center">
-    <div class="flex flex-col items-center justify-between h-1/2 w-1/3">
+    <div class="flex flex-col items-center justify-between h-1/2 w-1/3 ">
       <p class="text-white mb-4">Fill color:</p>
       <div
         :class="['color-box', 'inline-block', 'rounded-[50%]', 'cursor-pointer', 'mx-[5px]', 'w-[20px]', 'h-[20px]', { 'w-[30px] h-[30px]': chosenFillColor === 'noColor' }]"
@@ -138,7 +138,7 @@ const restartDrawing = () => {
 
   
     <div
-      class="w-fit h-full flex items-center justify-center bg-white border-2 border-solid rounded-lg"
+      class="w-fit h-fit  flex items-center justify-center bg-white border-2 border-solid rounded-lg"
     >
       <canvas
         width="560"
@@ -150,7 +150,7 @@ const restartDrawing = () => {
         id="paper-canvas"
         ref="canvas"
       ></canvas>
-      <MickyMouse class="absolute h-full scale-[.85] opacity-15" />
+      <MickyMouse class="absolute h-full scale-[.85] opacity-15 md:scale-[.75]" />
     </div>
     <div class="flex flex-col justify-between w-1/3 gap-4 items-center">
       <div
@@ -165,12 +165,12 @@ const restartDrawing = () => {
         </p>
       </div>
       <div class="w-full flex flex-col items-center justify-between gap-4"><a
-        class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4"
+        class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4 md:w-5/6"
         @click.prevent="clearCanvas"
         ><RotateCcw />Clear Canvas</a
       >
       <a
-        class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4"
+        class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4 md:w-5/6"
         @click.prevent="saveSvg"
       >
         <template v-if="spacedBodypart() === 'head'">
