@@ -4,7 +4,7 @@
     data-name="Puppet"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 590 630"
-    :class="this.bodyParts !== null && this.bodyParts.length !== undefined && this.bodyParts.length !== 0 ? 'scale-[.8] md:scale-[1]' : 'scale-[.7] md:scale-[.9]'"
+    :class="this.bodyParts !== null && this.bodyParts.length !== undefined && this.bodyParts.length !== 0 ? 'xl:scale-[1.1] scale-[1.3]' : 'xl:scale-[1] scale-[1.3]'"
   >
     <g id="leftLeg" transform-origin="250 440">
       <!-- <circle cx="250" cy="440" r="1" fill="green" id="pivotPoint" /> -->
