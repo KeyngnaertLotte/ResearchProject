@@ -16,7 +16,7 @@ import {
 var path;
 var tool;
 const group = ref([]);
-const chosenFillColor = ref('noColor');
+const chosenFillColor = ref('#000000');
 const bodyPartCounter = ref(0);
 
 const colors = ref([
@@ -56,8 +56,7 @@ onMounted(() => {
   };
 
   tool.onMouseUp = function (e) {
-    if (chosenFillColor.value != 'noColor')
-      path.fillColor = chosenFillColor.value;
+    path.fillColor = chosenFillColor.value;
     console.log(path);
     console.log(path.pathData);
     group.value.push({
@@ -122,12 +121,6 @@ const restartDrawing = () => {
   <div class="h-full w-full flex flex-row justify-between items-center">
     <div class="flex flex-col items-center justify-between h-1/2 w-1/3 ">
       <p class="text-white mb-4">Fill color:</p>
-      <div
-        :class="['color-box', 'inline-block', 'rounded-[50%]', 'cursor-pointer', 'mx-[5px]', 'w-[20px]', 'h-[20px]', { 'w-[30px] h-[30px]': chosenFillColor === 'noColor' }]"
-        @click="changeFillColor('noColor')"
-      >
-        <XCircle :size="[chosenFillColor === 'noColor' ? 30 : 20]" class="text-red-500" />
-      </div>
       <div
         v-for="color in colors"
         :class="['color-box', 'inline-block', 'rounded-[50%]', 'cursor-pointer', 'mx-[5px]', 'w-[20px]', 'h-[20px]', { 'w-[30px] h-[30px]': chosenFillColor === color }, `bg-[${color}]`]"
