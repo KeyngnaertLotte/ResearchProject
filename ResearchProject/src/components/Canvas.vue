@@ -2,6 +2,9 @@
 import paper from 'paper';
 import { ref, onMounted } from 'vue';
 import MickyMouse from '@/components/svg/SvgMickyMouse.vue';
+
+import { useRouter } from 'vue-router';
+const router = useRouter();
 import {
   XCircle,
   Trash2,
@@ -60,15 +63,19 @@ onMounted(() => {
     group.value.push({
       id: bodyParts.value[bodyPartCounter.value],
       pathData: path.pathData,
+      fill: chosenFillColor.value
     });
   };
 });
 
 const saveSvg = () => {
   bodyPartCounter.value++;
+  paper.project.activeLayer.removeChildren();
   if (bodyPartCounter.value === 6) {
     bodyPartCounter.value = 0
+    localStorage.clear()
     localStorage.setItem('puppet', JSON.stringify(group.value));
+    router.push('/');
   }
   group.value.forEach((element) => {
     console.log(element);
@@ -102,6 +109,13 @@ const spacedBodypart = () => {
     return bodyParts.value[bodyPartCounter.value];
   }
 };
+
+const restartDrawing = () => {
+  paper.project.activeLayer.removeChildren();
+  group.value = [];
+  localStorage.clear()
+}
+
 </script>
 
 <template>
@@ -109,18 +123,20 @@ const spacedBodypart = () => {
     <div class="flex flex-col items-center justify-between h-1/2 w-1/3">
       <p class="text-white mb-4">Fill color:</p>
       <div
-        class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]"
+        :class="['color-box', 'inline-block', 'rounded-[50%]', 'cursor-pointer', 'mx-[5px]', 'w-[20px]', 'h-[20px]', { 'w-[30px] h-[30px]': chosenFillColor === 'noColor' }]"
         @click="changeFillColor('noColor')"
       >
-        <XCircle :size="20" class="text-red-500" />
+        <XCircle :size="[chosenFillColor === 'noColor' ? 30 : 20]" class="text-red-500" />
       </div>
       <div
         v-for="color in colors"
-        class="color-box inline-block rounded-[50%] cursor-pointer w-[20px] h-[20px] mx-[5px]"
+        :class="['color-box', 'inline-block', 'rounded-[50%]', 'cursor-pointer', 'mx-[5px]', 'w-[20px]', 'h-[20px]', { 'w-[30px] h-[30px]': chosenFillColor === color }, `bg-[${color}]`]"
         :style="{ backgroundColor: color }"
         @click="changeFillColor(color)"
       ></div>
     </div>
+
+  
     <div
       class="w-fit h-full flex items-center justify-center bg-white border-2 border-solid rounded-lg"
     >
@@ -148,10 +164,10 @@ const spacedBodypart = () => {
           {{ spacedBodypart() }} click on save drawing.
         </p>
       </div>
-      <a
+      <div class="w-full flex flex-col items-center justify-between gap-4"><a
         class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4"
         @click.prevent="clearCanvas"
-        ><Trash2 />Clear Canvas</a
+        ><RotateCcw />Clear Canvas</a
       >
       <a
         class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4"
@@ -163,10 +179,10 @@ const spacedBodypart = () => {
         <template v-else> <ArrowBigRight /> Next bodypart </template>
       </a>
       <a
-        class="bg-[#333] text-white rounded-[5px] w-1/2 cursor-pointer flex flex-row gap-4 p-4"
+        class="absolute bg-[#333] text-white rounded-[5px] w-fit bottom-0 right-0 m-4 cursor-pointer flex flex-row gap-4 p-4"
         @click.prevent="restartDrawing"
-        ><RotateCcw /> Restart whole drawing</a
-      >
+        ><Trash2 /> Delete drawing</a
+      ></div>
     </div>
   </div>
 </template>
