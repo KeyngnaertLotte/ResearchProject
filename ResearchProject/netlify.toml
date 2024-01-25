@@ -1,4 +1,3 @@
 [build]
-  base = "ResearchProject/package.json"
   publish = "dist"
   command = "npm run build"
