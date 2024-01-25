@@ -27,7 +27,7 @@
   import OpenAI from "openai";
   import Loader from "@/components/Loader.vue"
   const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: import.meta.env.VITE_API_KEY,
     dangerouslyAllowBrowser: true,
   });
   const puppetCode = `this.puppet('#rightArm', [0, 0], [0, 0]);
