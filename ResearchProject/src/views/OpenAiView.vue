@@ -62,14 +62,14 @@
     methods: {
       async sendQuestion() {
         this.loading = true
-        const question = `${puppetCode} Change the values of this code so that my puppet ${this.question}. My puppet function looks like this ${animeCode}. `;
+        const question = `${puppetCode} only change the values of this code so that my puppet ${this.question}. My puppet function looks like this ${animeCode}. `;
         
         try {
           const completion = await openai.chat.completions.create({
             messages: [
               {
                 role: "system",
-                content: `You are a helpful assistant designed to only output code in following format ${puppetCode}`,
+                content: `You are a helpful assistant to animate with animejs designed to only change the values in following code format ${puppetCode} and return only code`,
               },
               { role: "user", content: question },
             ],
