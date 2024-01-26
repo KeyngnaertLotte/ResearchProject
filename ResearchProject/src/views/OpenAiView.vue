@@ -1,20 +1,17 @@
 <template>
     <div class="flex justify-center items-center h-full">
-      <div class="flex flex-col  items-center h-2/5 p-4 rounded-2xl bg-[#DE2A21] w-4/5">
+      <div class="flex flex-col  items-center h-[70%] p-4 rounded-2xl bg-[#DE2A21] w-4/5">
         <h2 class="text-white font-bold xl:text-4xl text-3xl">Let's make Micky move!</h2>
       <div class="flex flex-col justify-around xl:w-3/5 w-4/5 h-full" v-if="!loading">
         <div class="w-full flex flex-col" >
-          <label for="question" class="text-white font-semibold my-2">What do you want him to do? </label>
-        <input
-          type="text"
-          id="question"
-          class="p-2 rounded-2xl "
+          <label for="question" class="text-white font-semibold my-4 text-justify flex flex-col  items-center justify-center text-lg">What do you want him to do? <p class="font-normal text-sm opacity-90">Be as specific as possible. For example: "turn his head left to right", "turn right leg 90 degrees to the right and the left leg 90 degrees to the left"</p> </label>
+        
+        <textarea id="question" class="p-2 rounded-2xl resize-none"
           v-model="question"
           placeholder="Enter your question"
-          required
-        />
+          required/>
         </div>
-      <button @click="sendQuestion" class="btn btn-primary bg-white rounded-lg p-1" > SEND QUESTION</button>
+      <button @click="sendQuestion" class="btn btn-primary bg-white rounded-lg p-1 text-[#DE2A21]" > SEND QUESTION</button>
       </div>
       <div class="w-full h-full flex items-center justify-center" v-if="loading">
         <Loader/>
