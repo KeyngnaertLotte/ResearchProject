@@ -17,10 +17,7 @@ export default {
   mounted() {
     this.emitter.on('openai', (data) => {
       receivedData = data;
-      console.log(receivedData);
-      // Remove backticks and "javascript" from the received data
       const cleanedData = receivedData.replace(/`|javascript|js/gi, '');
-      console.log('cleanedData: ' + cleanedData);
 
 const regex = /this\.puppet\('(#\w+)', \[(-?\d+), (-?\d+)\], \[(-?\d+), (-?\d+)\]\);/g;
 let match;
@@ -33,8 +30,6 @@ while ((match = regex.exec(cleanedData)) !== null) {
   const bodyPart = match[1];
   const position = [parseInt(match[2]), parseInt(match[3])];
   const rotation = [parseInt(match[4]), parseInt(match[5])];
-
-  console.log(`${bodyPart}: Position ${position}, Rotation ${rotation}`);
 
   if (bodyPart === "#rightArm"){
   this.puppet('#rightArm', [position], [rotation]);

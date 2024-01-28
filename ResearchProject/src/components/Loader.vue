@@ -1,4 +1,3 @@
-<!-- Loader.vue -->
 <template>
       <div class="spinner"></div>
   </template>
@@ -8,7 +7,6 @@
   
   export default {
     mounted() {
-      // Use anime.js to animate the spinner
       anime({
         targets: '.spinner',
         rotate: '+=360deg',
