@@ -1,6 +1,5 @@
 <template>
   <div class="w-[70%] h-[70%]">
-    <!-- <MickyMouse class="scale-[0.7]"/> -->
     <Puppet />
   </div>
 </template>
@@ -26,12 +25,17 @@ export default {
 const regex = /this\.puppet\('(#\w+)', \[(-?\d+), (-?\d+)\], \[(-?\d+), (-?\d+)\]\);/g;
 let match;
 
+if ((match = regex.exec(cleanedData)) === null){
+  alert("Oops something went wrong try again")
+}
+
 while ((match = regex.exec(cleanedData)) !== null) {
   const bodyPart = match[1];
   const position = [parseInt(match[2]), parseInt(match[3])];
   const rotation = [parseInt(match[4]), parseInt(match[5])];
 
   console.log(`${bodyPart}: Position ${position}, Rotation ${rotation}`);
+
   if (bodyPart === "#rightArm"){
   this.puppet('#rightArm', [position], [rotation]);
 }
