@@ -1,29 +1,31 @@
-# ResearchProject
+# Research Project
 
-This template should help get you started developing with Vue 3 in Vite.
+## Installation Guide
 
-## Recommended IDE Setup
+### Obtaining OpenAI Secret Key
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+1. Go to https://platform.openai.com/docs/overview
+2. Create an account or log in.
+3. Click on the lock icon on the left, labeled "API Keys."
+4. Click on "Create new secret key."
+5. Optionally, you can give the secret key a name, but it is not necessary. Click on "create secret key."
+6. **Important:** Click on "copy" now and save your secret key somewhere. Once you click on "done," it will no longer be possible to access the key.
 
-## Customize configuration
+### Project Installation
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. Clone the GitHub repository and open it in a code editor.
+2. Open a terminal and ensure you are in the ResearchProject directory.
+3. Install all the required packages:
+    
+    ```powershell
+    npm i
+    ```
+    
+4. Create a .env file in the main directory.
+5. Place your secret API key in the file:
+    
+    ```powershell
+    VITE_API_KEY=[secretApiKey]
+    ```
+    
+6. Run the project.
