@@ -17,7 +17,6 @@
             placeholder="Enter your movement"
             required
           />
-          <!-- Display validation error message -->
           <p v-if="validation" class="text-red-950 mt-2">Please enter a movement.</p>
         </div>
         <button @click="sendQuestion" class="hover:font-bold hover:shadow hover:shadow-black  focus:xl:text-lg focus:text-xl focus:font-bold focus:text-[#DE2A21] btn btn-primary bg-white rounded-lg p-1 text-[#DE2A21]"> SEND QUESTION</button>
