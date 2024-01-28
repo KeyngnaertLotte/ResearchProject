@@ -39,7 +39,6 @@ const bodyParts = ref([
 
 const changeFillColor = (color) => {
   chosenFillColor.value = color;
-  console.log(chosenFillColor);
 };
 
 onMounted(() => {
@@ -57,8 +56,6 @@ onMounted(() => {
 
   tool.onMouseUp = function (e) {
     path.fillColor = chosenFillColor.value;
-    console.log("aaa" + path);
-    console.log(path.pathData);
     group.value.push({
       id: bodyParts.value[bodyPartCounter.value],
       pathData: path.pathData,
@@ -77,10 +74,6 @@ const saveSvg = () => {
     localStorage.setItem('puppet', JSON.stringify(group.value));
     router.push('/');
   }
-  group.value.forEach((element) => {
-    console.log(element);
-  });
-  console.log(bodyPartCounter);
   }
   else{
     alert("Please draw something first")
@@ -91,7 +84,6 @@ const clearCanvas = () => {
   paper.project.activeLayer.removeChildren();
   group.value = [];
 
-  // Re-initialize path and tool
   path = new paper.Path();
   tool = new paper.Tool();
 };
